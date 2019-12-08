@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: demo-consumer
+    config:
+      discovery:
+        enabled: true
+        service-id: demo-config
+      name: demo-consumer
+      profile: pro
+      label: master
+  rabbitmq:
+    host: 192.168.2.7
+    port: 5672
+    username: guest
+    password: guest
+#此文件加载优先级高于application.yml

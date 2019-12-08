@@ -1,0 +1,25 @@
+server:
+  port: 8005
+spring:
+  application:
+    name: demo-consumer
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8000"
+  zipkin:
+    base-url: http://192.168.2.7:9411/
+  sleuth:
+    sampler:
+      probability: 1 #样本采集量
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+feign:
+  hystrix:
+    enabled: true

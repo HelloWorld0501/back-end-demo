@@ -1,0 +1,19 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: demo-zuul
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+zuul:
+  routes:
+    ribbon:
+      path: /ribbon/**
+      serviceId: demo-consumer #\u8F6C\u53D1\u5230\u6D88\u8D39\u8005
+    feign:
+      path: /feign/**
+      serviceId: demo-consumer #\u8F6C\u53D1\u5230\u6D88\u8D39\u8005

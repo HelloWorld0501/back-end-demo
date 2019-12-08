@@ -1,0 +1,30 @@
+server:
+  port: 8020
+spring:
+  application:
+    name: demo-config
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+    config:
+      label: master
+      server:
+        git:
+          uri: https://gitee.com/HelloWorldCrud/FullStackDevelopmentDemo/
+          search-paths: backenddemo/config-repo/
+          username: 账号
+          password: 密码
+          default-label: master
+  rabbitmq:
+    host: 192.168.2.7
+    port: 5672
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,0 +1,26 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: demo-backup
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8000"
+
+backenddemo:
+  backup:
+    datasource:
+      host: localhost
+      userName: mangoAdmin
+      password: mangomango
+      database: mango
+#健康检查接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

@@ -1,0 +1,36 @@
+#提前安装好docker环境
+#docker pull openzipkin/zipkin
+#docker pull docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+#建立如下结构,docker-compose up -d
+#此处有坑,服务器虚拟内存太小会导致es启动失败!!!
+#dockerfile
+# |- elasticsearch
+# |    |- data
+# |- docker-compose.yml
+version: "3"
+services:
+  elasticsearch:
+    image:  docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    container_name: elasticsearch
+    restart: always
+    networks:
+      - elk
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    #对应的数据存储路径,前者是服务器物理路径
+    volumes:
+      - ../elasticsearch/data:/usr/share/elasticsearch/data
+  zipkin:
+    image: openzipkin/zipkin:latest
+    container_name: zipkin
+    restart: always
+    networks:
+      - elk
+    ports:
+      - "9411:9411"
+    environment:
+      - STORAGE_TYPE=elasticsearch
+      - ES_HOSTS=elasticsearch
+networks:
+  elk:
