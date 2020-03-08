@@ -53,4 +53,50 @@ public class FileUtils {
         // 删除空目录或文件
         file.delete();
     }
+
+    /**
+     * 读文件
+     *
+     * @param file 文件路径
+     * @return
+     */
+    public static String readFile(String file) {
+        return readFile(new File(file));
+    }
+
+    /**
+     * 读文件
+     *
+     * @param file 文件对象
+     * @return
+     */
+    public static String readFile(File file) {
+        StringBuffer result = new StringBuffer();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String s = null;
+            while ((s = bufferedReader.readLine()) != null) {
+                result.append(System.lineSeparator() + s);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result.toString();
+    }
+
+    public static String getProjectPath(){
+        String classPath = getClassPath();
+        return new File(classPath).getParentFile().getAbsolutePath();
+    }
+
+    /**
+     * 获取类路径
+     * @return
+     */
+    public static String getClassPath() {
+        String classPath = FileUtils.class.getClassLoader().getResource("").getPath();
+        return classPath;
+    }
 }
+

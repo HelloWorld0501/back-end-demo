@@ -1,6 +1,6 @@
 package com.daydream.demo_admin.controller;
 
-import com.daydream.demo_admin.model.LoginBean;
+import com.daydream.demo_admin.vo.LoginBean;
 import com.daydream.demo_admin.model.SysUser;
 import com.daydream.demo_admin.security.JwtAuthenticatioToken;
 import com.daydream.demo_admin.service.SysUserService;

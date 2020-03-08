@@ -35,7 +35,7 @@ public class SysDictServiceImpl implements SysDictService {
         if (record.getId() == null || record.getId() == 0) {
             return sysDictMapper.insertSelective(record);
         }
-        return 0;
+        return sysDictMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
@@ -44,8 +44,8 @@ public class SysDictServiceImpl implements SysDictService {
     }
 
     @Override
-    public int delete(List<SysDict> record) {
-        for (SysDict sysDict : record) {
+    public int delete(List<SysDict> records) {
+        for (SysDict sysDict : records) {
             delete(sysDict);
         }
         return 1;

@@ -8,7 +8,7 @@ public class SysMenu {
 
     private String name;
 
-    private Long parendId;
+    private Long parentId;
 
     private String url;
 
@@ -53,12 +53,12 @@ public class SysMenu {
         this.name = name == null ? null : name.trim();
     }
 
-    public Long getParendId() {
-        return parendId;
+    public Long getparentId() {
+        return parentId;
     }
 
-    public void setParendId(Long parendId) {
-        this.parendId = parendId;
+    public void setparentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     public String getUrl() {

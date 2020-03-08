@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
  * \* Date: 2019/9/13
  * \* Time: 6:41
  * \* To change this template use File | Settings | File Templates.
- * \* Description: 替代springboot的反射方法
+ * \* Description: 反射相关类
  * \
  */
 public class ReflectionUtils {

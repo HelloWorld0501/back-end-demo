@@ -13,6 +13,10 @@ import java.io.IOException;
  * \
  */
 public class IOUtils {
+    /**
+     * 关闭对象或连接
+     * @param closeable
+     */
     public static void closeQuietly(final Closeable closeable) {
         try {
             if (closeable != null) {

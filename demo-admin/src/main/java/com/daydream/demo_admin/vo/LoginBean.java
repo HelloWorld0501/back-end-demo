@@ -1,4 +1,4 @@
-package com.daydream.demo_admin.model;
+package com.daydream.demo_admin.vo;
 
 /**
  * \* Created with IntelliJ IDEA.

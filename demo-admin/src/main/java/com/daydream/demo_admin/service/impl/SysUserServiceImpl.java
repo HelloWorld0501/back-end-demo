@@ -51,7 +51,11 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public SysUser findByName(String username) {
-        return sysUserMapper.findByName(username);
+        SysUser sysUser = sysUserMapper.findByName(username);
+        List<SysUserRole> userRoles = findUserRoles(sysUser.getId());
+        sysUser.setUserRoles(userRoles);
+        sysUser.setRoleNames(getRoleNames(userRoles));
+        return sysUser;
     }
 
     /**
@@ -155,7 +159,9 @@ public class SysUserServiceImpl implements SysUserService {
                 sysUserRole.setUserId(id);
             }
         } else {
-            sysUserRoleMapper.deleteByUserId(record.getId());
+            if (!record.getUserRoles().isEmpty()) {
+                sysUserRoleMapper.deleteByUserId(record.getId());
+            }
         }
         for (SysUserRole sysUserRole : record.getUserRoles()) {
             sysUserRoleMapper.insertSelective(sysUserRole);
@@ -169,8 +175,8 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public int delete(List<SysUser> record) {
-        for (SysUser sysUser : record) {
+    public int delete(List<SysUser> records) {
+        for (SysUser sysUser : records) {
             delete(sysUser);
         }
         return 0;

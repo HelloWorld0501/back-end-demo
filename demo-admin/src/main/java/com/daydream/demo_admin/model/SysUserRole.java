@@ -15,7 +15,6 @@ public class SysUserRole {
 
     private Date lastUpdateTime;
 
-    private Byte delFlag;
 
     private Long userId;
 
@@ -65,14 +64,6 @@ public class SysUserRole {
 
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
-    }
-
-    public Byte getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(Byte delFlag) {
-        this.delFlag = delFlag;
     }
 
     public Long getUserId() {

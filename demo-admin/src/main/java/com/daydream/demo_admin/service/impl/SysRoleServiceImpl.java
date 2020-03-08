@@ -45,6 +45,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     public List<SysMenu> findRoleMenus(Long roleId) {
         SysRole sysRole = sysRoleMapper.selectByPrimaryKey(roleId);
         if (SysConstants.ADMIN.equalsIgnoreCase(sysRole.getName())) {
+            //若是管理员就返回全部的角色菜单
             return sysMenuMapper.findAll();
         }
         return sysMenuMapper.findRoleMenus(roleId);
@@ -57,7 +58,7 @@ public class SysRoleServiceImpl implements SysRoleService {
             return 1;
         }
         Long roleId = records.get(0).getRoleId();
-        sysRoleMenuMapper.deleteByPrimaryKey(roleId);
+        sysRoleMenuMapper.deleteByRoleId(roleId);
         for (SysRoleMenu sysRoleMenu : records) {
             sysRoleMenuMapper.insertSelective(sysRoleMenu);
         }

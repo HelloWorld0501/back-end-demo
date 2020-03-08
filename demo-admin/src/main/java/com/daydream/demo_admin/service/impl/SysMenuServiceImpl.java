@@ -1,5 +1,6 @@
 package com.daydream.demo_admin.service.impl;
 
+import com.daydream.demo_admin.constant.SysConstants;
 import com.daydream.demo_admin.dao.SysMenuMapper;
 import com.daydream.demo_admin.model.SysMenu;
 import com.daydream.demo_admin.service.SysMenuService;
@@ -32,7 +33,7 @@ public class SysMenuServiceImpl implements SysMenuService {
         List<SysMenu> sysMenus = new ArrayList<>();
         List<SysMenu> menus = findByUser(userName);
         for (SysMenu menu : menus) {
-            if (menu.getParendId() == null || menu.getParendId() == 0) {
+            if (menu.getparentId() == null || menu.getparentId() == 0) {
                 menu.setLevel(0);
                 if (!exists(sysMenus, menu)) {
                     sysMenus.add(menu);
@@ -41,25 +42,26 @@ public class SysMenuServiceImpl implements SysMenuService {
         }
         //比较器compareTo
         sysMenus.sort((o1, o2) -> o1.getOrderNum().compareTo(o2.getOrderNum()));
+        findChildren(sysMenus, menus, menuType);
         return sysMenus;
     }
 
     @Override
     public List<SysMenu> findByUser(String userName) {
+        if (userName == null || "".equals(userName) || SysConstants.ADMIN.equalsIgnoreCase(userName)) {
+            return sysMenuMapper.findAll();
+        }
         return sysMenuMapper.findByUserName(userName);
     }
 
-    public SysMenuServiceImpl() {
-        super();
-    }
 
     @Override
     public int save(SysMenu record) {
         if (record.getId() == null || record.getId() == 0) {
             return sysMenuMapper.insertSelective(record);
         }
-        if (record.getParendId() == null) {
-            record.setParendId(0L);
+        if (record.getparentId() == null) {
+            record.setparentId(0L);
         }
         return sysMenuMapper.updateByPrimaryKeySelective(record);
     }
@@ -92,6 +94,7 @@ public class SysMenuServiceImpl implements SysMenuService {
         for (SysMenu menu : sysMenus) {
             if (menu.getId().equals(sysMenu.getId())) {
                 exist = true;
+                break;
             }
         }
         return exist;
@@ -107,7 +110,7 @@ public class SysMenuServiceImpl implements SysMenuService {
                     continue;
                 }
                 //检查菜单id是否等同于父级id,一级菜单为0
-                if (sysMenu.getId() != null && sysMenu.getId().equals(menu.getParendId())) {
+                if (sysMenu.getId() != null && sysMenu.getId().equals(menu.getparentId())) {
                     menu.setParentName(sysMenu.getName());
                     menu.setLevel(sysMenu.getLevel() + 1);
                     if (!exists(children, menu)) {

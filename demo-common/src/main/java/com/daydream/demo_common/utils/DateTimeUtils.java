@@ -16,8 +16,8 @@ public class DateTimeUtils {
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     /**
-     * 格式化时间
-     *
+     * 获取当前标准格式化日期时间
+     * @param date 时间
      * @return
      */
     public static String getDateTime(Date date) {
