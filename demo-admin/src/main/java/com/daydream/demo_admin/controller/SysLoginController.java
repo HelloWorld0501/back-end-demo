@@ -63,12 +63,9 @@ public class SysLoginController {
 
     @PostMapping(value = "/login")
     public HttpResult login(@RequestBody LoginBean loginBean, HttpServletRequest httpServletRequest) throws IOException {
-//        String userName = loginBean.getAccount();
-//        String passWord = loginBean.getPassword();
-//        String captcha = loginBean.getCaptcha();
-        String userName = "admin";
-        String passWord = "admin";
-        String captcha = "11111";
+        String userName = loginBean.getAccount();
+        String passWord = loginBean.getPassword();
+        String captcha = loginBean.getCaptcha();
         Object kaptcha = httpServletRequest.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         if (kaptcha == null) {
             return HttpResult.error(ErrorCode.CAPTCHA_EXPIRED);
