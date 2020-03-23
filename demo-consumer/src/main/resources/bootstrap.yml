@@ -11,10 +11,9 @@ spring:
         service-id: demo-config
       name: demo-consumer
       profile: pro
-      label: master
   rabbitmq:
-    host: 192.168.2.7
+    host: localhost
     port: 5672
-    username: guest
-    password: guest
+    username: 你的用户名
+    password: 你的密码
 #此文件加载优先级高于application.yml

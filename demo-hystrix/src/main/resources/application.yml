@@ -9,6 +9,10 @@ spring:
       port: 8500
       discovery:
         service-name: ${spring.application.name}
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8000"
 turbine:
   instanceUrlSuffix: hystrix.stream
   app-config: demo-consumer

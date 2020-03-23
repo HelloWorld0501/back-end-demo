@@ -1,4 +1,4 @@
 使用docker容器运行rabbitMQ
 docker pull rabbitmq:management
-docker run -d --name rabbitmq -p 5671:5671 -p 5672:5672 -p 4369:4369 -p 25672:252 -p 15671:15671 -p 15672:15672 rabbitmq:management
+docker run -d --name rabbitmq -e RABBITMQ_DEFAULT_USER=你的用户名 -e RABBITMQ_DEFAULT_PASS=你的密码 -p 5671:5671 -p 5672:5672 -p 4369:4369 -p 25672:25672 -p 15671:15671 -p 15672:15672 rabbitmq:management
 web访问 ip:15672 默认账号密码都是guest

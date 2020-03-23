@@ -50,8 +50,8 @@ public class SysLoginController {
         httpServletResponse.setHeader("Cache-Control", "no-store,no-cache");
         httpServletResponse.setContentType("image/jpeg");
         //文字验证码
-//        String text = producer.createText();
-        String text = "11111";
+        String text = producer.createText();
+//        String text = "11111";
         //图片验证码
         BufferedImage bufferedImage = producer.createImage(text);
         //保存验证码到Session

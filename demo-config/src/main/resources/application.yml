@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: demo-config
+  #使用本地配置文件
+  profiles:
+    active: native
   cloud:
     consul:
       host: localhost
@@ -10,19 +13,14 @@ spring:
       discovery:
         service-name: ${spring.application.name}
     config:
-      label: master
       server:
-        git:
-          uri: https://gitee.com/HelloWorldCrud/FullStackDevelopmentDemo/
-          search-paths: backenddemo/config-repo/
-          username: 账号
-          password: 密码
-          default-label: master
+        native:
+          searchLocations: classpath:/config
   rabbitmq:
-    host: 192.168.2.7
+    host: localhost
     port: 5672
-    username: guest
-    password: guest
+    username: 你的用户名
+    password: 你的密码
 management:
   endpoints:
     web:
