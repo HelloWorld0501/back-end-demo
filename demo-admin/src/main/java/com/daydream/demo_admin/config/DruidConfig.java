@@ -76,7 +76,7 @@ public class DruidConfig {
         servletServletRegistrationBean.addInitParameter("deny", "192.168.1.1");
         //登录查看信息的账号密码,用于查看Druid后台管理
         servletServletRegistrationBean.addInitParameter("loginUsername", "admin");
-        servletServletRegistrationBean.addInitParameter("loginPassword", "admin");
+        servletServletRegistrationBean.addInitParameter("loginPassword", "adminpassword");
         //是否能偶重置数据
         servletServletRegistrationBean.addInitParameter("resetEnable", "true");
         return servletServletRegistrationBean;
